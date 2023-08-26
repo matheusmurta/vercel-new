@@ -3,11 +3,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
+// Configuração do middleware CORS
 app.use(cors({
-    origin: 'https://vercel-fe-test.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-}));
-
+    origin: '*',
+    methods: 'GET, OPTIONS, PATCH, DELETE, POST, PUT',
+    allowedHeaders: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+    credentials: true
+  }));
+  
 app.get('/api/data', (req, res) => {
     const data = {
         message: 'Dados vindos do servidor Node.js!'
